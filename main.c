@@ -1,54 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h> // malloc, free
 #include <string.h> // memcpy, strlen
+#include "stack1.h"
 
-/* 
-push("car");
-push("pc");
-push("tomato");
-pop --> tomato;
-pop --> pc;
-*/
+#define INPUT_SIZE	(100)
 
-#define STACK_SIZE	(5)
-
-typedef struct {
-	const char* string[STACK_SIZE];
-	unsigned int counter;
-}stack_t;
-
-static stack_t stack;
-
-void push(const char* new_str)
-{
-	if (stack.counter == STACK_SIZE || new_str == NULL) {	
-		printf("Cannot push! Stack is full or null data\n");
-		return;
-	}
-	printf("Pushing \"%s\"\n", new_str);
-	char* pstr = (char*)malloc(strlen(new_str) + 1);
-	if (pstr == NULL) {
-		return;
-	}
-	memcpy(pstr, new_str, strlen(new_str)+1);
-	stack.string[stack.counter++] = pstr;	
-}
-
-const char* pop(void)
-{
-	static char* return_str = NULL;
-	if (return_str != NULL) {
-		free(return_str);
-		return_str = NULL;
-	}
-	if (stack.counter == 0) {
-		printf("Cannot pop! Empty stack\n");
-		return NULL;
-	}	
-	return_str = stack.string[--stack.counter];
-	//printf("Popping \"%s\"\n", return_str);
-	return return_str;
-}
+const char menu_string[] =	"**********************  MENU  **************************\n" \
+							"'+' Push string\n'-' Pop string\n'*' Print the stack\n'/' Exit from the program\n'm' See this menu\n" \
+							"********************************************************\n";
 
 void print_stack(void)
 {
@@ -67,41 +26,44 @@ void print_stack(void)
 
 int main(void)
 {
-	print_stack();
-
-	push("car");
-	push("bee");
-	push("book");
-	print_stack();
+	char input[INPUT_SIZE] = { 0 };
+	char ch = 0;
 	
-	printf("Popping \"%s\"\n", pop());
-	print_stack();
-
-	push("plane");
-	push("ship");
-	print_stack();
-
-	printf("Popping \"%s\"\n", pop());
-	print_stack();
-
-	printf("Popping \"%s\"\n", pop());
-	printf("Popping \"%s\"\n", pop());
-	printf("Popping \"%s\"\n", pop());
-	print_stack();
-
-	printf("Popping \"%s\"\n", pop());
-	printf("Popping \"%s\"\n", pop());
-	printf("Popping \"%s\"\n", pop());
-	print_stack();
-
-	push(NULL);
-	push("pen");
-	push("color");
-	push("pc");
-	push("student");
-	push("worker");
-	push("dentist");
-	print_stack();
+	printf("%s", menu_string);
+	
+	do {		
+		printf("Menu command: ");
+		gets_s(input, INPUT_SIZE);
+		ch = input[0];
+		switch (ch) {
+			case'+': {
+				printf("Enter string to push to stack: ");
+				gets_s(input, INPUT_SIZE);
+				push(input);
+				break;
+			}
+			case'-': {
+				printf("Popping string: '%s'\n", (const char *)pop());
+				break;
+			}
+			case'*': {
+				print_stack();
+				break;
+			}
+			case'/': {
+				printf("Good bye!..\n");
+				break;
+			}
+			case'm': {
+				printf("%s", menu_string);
+				break;
+			}
+			default: {
+				printf("Undefined input!\n");
+				break;
+			}
+		}
+	} while (ch != '/');	
 
 	return 0;
 }
