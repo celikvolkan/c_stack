@@ -9,5 +9,5 @@ typedef struct {
 
 extern stack_t stack;
 
-void push(const char* new_str);
-char* pop(void);
+void push1(const char* new_str);
+char* pop1(void);

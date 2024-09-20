@@ -5,7 +5,7 @@
 
 stack_t stack;
 
-void push(const char* new_str)
+void push1(const char* new_str)
 {
 	if (stack.counter == STACK_SIZE || new_str == NULL) {
 		printf("Cannot push! Stack is full or null data\n");
@@ -20,7 +20,7 @@ void push(const char* new_str)
 	stack.string[stack.counter++] = pstr;
 }
 
-char* pop(void)
+char* pop1(void)
 {
 	static char* return_str = NULL;
 	if (return_str != NULL) {

@@ -5,9 +5,12 @@
 
 #define INPUT_SIZE	(100)
 
-const char menu_string[] =	"**********************  MENU  **************************\n" \
-							"'+' Push string\n'-' Pop string\n'*' Print the stack\n'/' Exit from the program\n'm' See this menu\n" \
-							"********************************************************\n";
+#define push    push1
+#define pop     pop1
+
+const char menu_string[] =  "**********************  MENU  **************************\n" \
+                            "'+' Push string\n'-' Pop string\n'*' Print the stack\n'/' Exit from the program\n'm' See this menu\n" \
+                            "********************************************************\n";
 
 void print_stack(void)
 {
