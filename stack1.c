@@ -11,11 +11,13 @@ void push1(const char* new_str)
 		printf("Cannot push! Stack is full or null data\n");
 		return;
 	}
-	printf("Pushing \"%s\"\n", new_str);
+	
 	char* pstr = (char*)malloc(strlen(new_str) + 1);
 	if (pstr == NULL) {
 		return;
 	}
+
+    printf("Pushing \"%s\"\n", new_str);
 	memcpy(pstr, new_str, strlen(new_str) + 1);
 	stack.string[stack.counter++] = pstr;
 }
