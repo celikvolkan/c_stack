@@ -5,8 +5,16 @@
 
 #define INPUT_SIZE	(100)
 
-#define push    push1
-#define pop     pop1
+/* API */
+void push(const char* new_str)
+{
+    push1(new_str);
+}
+
+char* pop(void)
+{
+    return pop1();
+}
 
 const char menu_string[] =  "**********************  MENU  **************************\n" \
                             "'+' Push string\n'-' Pop string\n'*' Print the stack\n'/' Exit from the program\n'm' See this menu\n" \
@@ -35,7 +43,7 @@ int main(void)
 	printf("%s", menu_string);
 	
 	do {		
-		printf("Menu command: ");
+		printf("\nMenu command: ");
 		gets_s(input, INPUT_SIZE);
 		ch = input[0];
 		switch (ch) {
@@ -54,7 +62,7 @@ int main(void)
 				break;
 			}
 			case'/': {
-				printf("Good bye!..\n");
+				printf("\nGOOD BYE!..\n\n");
 				break;
 			}
 			case'm': {
