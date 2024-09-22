@@ -14,7 +14,7 @@ void push(const char* new_str)
 
 char* pop(void)
 {
-    return pop2();
+    return pop1();
 }
 
 const char menu_string[] =  "**********************  MENU  **************************\n" \
@@ -57,7 +57,7 @@ int main(void)
             case'-': {
                 char* str = pop();
                 printf("Popping string: '%s'\n", str);
-                free(str);
+                // free(str);
                 break;
             }
             case'*': {

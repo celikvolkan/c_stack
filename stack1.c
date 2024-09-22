@@ -7,33 +7,33 @@ stack_t stack;
 
 void push1(const char* new_str)
 {
-	if (stack.counter == STACK_SIZE || new_str == NULL) {
-		printf("Cannot push! Stack is full or null data\n");
-		return;
-	}
-	
-	char* pstr = (char*)malloc(strlen(new_str) + 1);
-	if (pstr == NULL) {
-		return;
-	}
+    if (stack.counter == STACK_SIZE || new_str == NULL) {
+        return;
+    }
+    char* str = (char*)malloc(strlen(new_str) + 1);
+    if (str == NULL) {
+        return;
+    }
 
-    printf("Pushing \"%s\"\n", new_str);
-	memcpy(pstr, new_str, strlen(new_str) + 1);
-	stack.string[stack.counter++] = pstr;
+    memcpy(str, new_str, strlen(new_str) + 1);;
+    stack.string[stack.counter++] = str;
 }
 
 char* pop1(void)
 {
-	static char* return_str = NULL;
-	if (return_str != NULL) {
-		free(return_str);
-		return_str = NULL;
-	}
-	if (stack.counter == 0) {
-		printf("Error: Cannot pop! Empty stack\n");
-		return NULL;
-	}
-	return_str = stack.string[--stack.counter];
-	//printf("Popping \"%s\"\n", return_str);
-	return return_str;
+    static char* pre_pop_str = NULL;
+    
+    if (pre_pop_str != NULL) {
+        free(pre_pop_str);
+        pre_pop_str = NULL;
+    }
+
+    if (stack.counter == 0) {
+        return NULL;
+    }
+     
+    
+    pre_pop_str = stack.string[--stack.counter];
+
+    return pre_pop_str;
 }
