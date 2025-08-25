@@ -40,7 +40,8 @@ int main(void)
 {
     char input[INPUT_SIZE] = { 0 };
     char ch = 0;
-    
+
+    printf("New Feature\n");
     printf("%s", menu_string);
    
     do {
