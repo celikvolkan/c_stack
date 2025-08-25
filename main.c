@@ -42,6 +42,7 @@ int main(void)
     char ch = 0;
 
     printf("New Feature\n");
+    printf("A new addition\n");
     printf("%s", menu_string);
    
     do {
